@@ -1,0 +1,25 @@
+{
+  "name": "awsamplify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "work:dev": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "AWS Amplify"
+  ],
+  "author": "Elpiu",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.11.7",
+    "apollo-server": "^3.13.0",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphiql": "^3.1.0",
+    "graphql": "^15.8.0",
+    "graphql-http": "^1.22.0",
+    "lodash": "^4.17.21"
+  }
+}
