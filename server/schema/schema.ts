@@ -1,39 +1,13 @@
-import {GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString,} from 'graphql';
+import {GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLSchema,} from 'graphql';
 import _ from 'lodash';
 
 // Import dummy data
 import {hobbiesData, postsData, usersData} from './dummyData';
+import {PostType} from "./types/PostType";
+import {UserType} from "./types/UserType";
+import {HobbyType} from "./types/HobbyType";
+import {it} from "node:test";
 
-// Create types
-const UserType = new GraphQLObjectType({
-  name: 'User',
-  description: 'Documentation for user...',
-  fields: () => ({
-    id: {type: GraphQLID},
-    name: {type: GraphQLString},
-    age: {type: GraphQLInt},
-    profession: {type: GraphQLString},
-  }),
-});
-
-const HobbyType = new GraphQLObjectType({
-  name: 'Hobby',
-  description: 'Documentation for hobby...',
-  fields: () => ({
-    id: {type: GraphQLID},
-    title: {type: GraphQLString},
-    description: {type: GraphQLString},
-  }),
-});
-
-const PostType = new GraphQLObjectType({
-  name: 'Post',
-  description: 'Documentation for post...',
-  fields: () => ({
-    id: {type: GraphQLID},
-    comment: {type: GraphQLString},
-  }),
-});
 
 // RootQuery
 const RootQuery = new GraphQLObjectType({
@@ -48,7 +22,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         // We resolve with data
         // Get and return data from a datasource
-        return _.find(usersData, {id: args.id});
+        return usersData.find(item => item.id === Number(args.id));
       },
     },
 
@@ -58,7 +32,7 @@ const RootQuery = new GraphQLObjectType({
         id: {type: new GraphQLNonNull(GraphQLID)},
       },
       resolve(parent, args) {
-        return _.find(hobbiesData, {id: args.id});
+        return hobbiesData.find(item => item.id === Number(args.id));
       },
     },
     post: {
@@ -67,7 +41,7 @@ const RootQuery = new GraphQLObjectType({
         id: {type: new GraphQLNonNull(GraphQLID)},
       },
       resolve(parent, args) {
-        return _.find(postsData, {id: args.id});
+        return postsData.find(item => item.id === Number(args.id));
       },
     },
   }),
