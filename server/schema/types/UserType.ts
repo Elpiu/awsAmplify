@@ -19,7 +19,7 @@ export const UserType = new GraphQLObjectType({
         return postsData.filter(item => item.userId === parent.id)
       }
     },
-    hobbys: {
+    hobbies: {
       type: new GraphQLList(HobbyType),
       resolve(parent, args) {
         return hobbiesData.filter(item => item.userId === parent.id)
